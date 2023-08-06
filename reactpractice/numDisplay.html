@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>num Display</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class TextDisplayer extends React.Component {
+            render() {
+                const { disText } = this.props;
+                return (<div>
+                    <h1 className="border">Your Number: {disText}</h1>
+                </div>);
+            }
+        }
+
+        class PhoneNum extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    isPhoneNumberValid: false,
+                    isTextDisplayVisible: false,
+                    phoneNo: "",
+                };
+            }
+            checkPhoneNo(str) {
+                let res = true;
+                str.split("").forEach((char) => {
+                    let asci = char.charCodeAt();
+                    if (!(asci > 47 && asci < 58)) {
+                        res = false
+                    }
+                })
+                return res;
+            }
+            onChangePhoneInput(event) {
+                event.preventDefault();
+                if (event.target.value.length !== 10) {
+                    if (this.state.isPhoneNumberValid) {
+                        this.setState({
+                            isPhoneNumberValid: false,
+                            isTextDisplayVisible: false
+
+                        });
+                    }
+                    return false;
+                }
+                if (this.checkPhoneNo(event.target.value)) {
+                    this.setState({
+                        isPhoneNumberValid: true,
+                        phoneNo: event.target.value,
+                    });
+                }
+
+            }
+            onSubmitHandler() {
+                if (!this.state.isPhoneNumberValid) {
+                    return;
+                }
+                this.setState({
+                    isTextDisplayVisible: true,
+                });
+            }
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <p>Phone Number</p>
+                        <input type="text" placeholder="Enter your num" onChange={this.onChangePhoneInput.bind(this)} />
+                        <button onClick={this.onSubmitHandler.bind(this)}>submit</button>
+                        {this.state.isTextDisplayVisible?<TextDisplayer disText = {this.state.phoneNo}/>:<div></div>}
+                    </React.Fragment>
+                )
+            }
+
+        }
+
+        class Container extends React.Component{
+            render(){
+                return(
+                    <React.Fragment>
+                        <PhoneNum/>   
+                    </React.Fragment>
+                )
+            }
+        }
+        ReactDOM.render(<Container />, document.getElementById("root"))
+
+    </script>
+</body>
+
+</html>

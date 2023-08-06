@@ -1,0 +1,30 @@
+{
+  "name": "lect-15",
+  "version": "1.0.0",
+  "description": "This package/project is to understand project setup.",
+  "main": "index.js",
+  "scripts": {
+    "test": "unit-test",
+    "build": "webpack"
+
+  },
+  "keywords": [
+    "my"
+  ],
+  "author": "amit",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "crypto-browserify": "^3.12.0",
+    "crypto-js": "^4.1.1",
+    "lodash": "^4.17.21"
+  }
+}

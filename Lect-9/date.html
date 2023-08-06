@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <title>Lecture9</title>
+    <style>
+        .date{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        document.getElementById("root");
+        console.log(state)
+    </script>
+    <script type="text/babel">
+
+        class Child extends React.Component{
+            render(){
+                const {displayData} = this.props;
+                return(
+                        <h1>{displayData}</h1>  
+                );
+            }
+        }
+
+        class Parent extends React.Component {
+            
+            constructor(props){
+                super(props);
+                this.state = {
+                    date: Parent.getDate(),
+                    timerRef:null
+                }
+            }
+            static getDate(){
+                const date = new Date();
+                return {
+                    date:date.getDate(),
+                    month:date.getMonth()+1,
+                    year:date.getFullYear(),
+                    hour:date.getHours(),
+                    minute:date.getMinutes(),
+                    second:date.getSeconds(),
+                    milliSecond:date.getMilliseconds(),
+                };
+             }
+            createTimer(){
+                const _this = this;
+                return setInterval(function(){
+                    _this.setState((prevState)=>{
+                        return{
+                            date:Parent.getDate(),
+                        }
+                    });
+                },1000);
+            }
+            onStartTimer(){
+                this.setState({
+                    timerRef : this.createTimer.bind(this)(),
+                });
+            }
+            onStopTimer(){
+                clearInterval(this.state.timerRef);
+                this.setState({
+                    timerRef:null,
+                });
+            }
+            render(){
+                console.log(this.state)
+                return(<div className="date">
+                    <span>Date</span>
+                    <Child  displayData={this.state.date.date}/>
+                    <Child  displayData={this.state.date.month}/>
+                    <Child  displayData={this.state.date.year}/>
+                    <Child  displayData={this.state.date.hour}/>
+                    <Child  displayData={this.state.date.minute}/>
+                    <Child  displayData={this.state.date.second}/>
+                    <Child  displayData={this.state.date.milliSecound}/>
+                    <button onClick={this.onStartTimer.bind(this)}>Start</button>
+                    <button onClick={this.onStopTimer.bind(this)}>Stop</button>
+                    </div>);
+            }
+        }
+
+        ReactDOM.render(<Parent/>,document.getElementById("root"));
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <title>Lecture9</title>
+</head>
+<!-- Explaining componentWillUnmount and joke about componentDidMount -->
+<!-- Explaination of memory leak and possibility -->
+<body>
+    <div id="root">
+        <!-- content here -->
+    </div>
+    <script type="text/babel">
+        let _timerGlobal = null;
+        class Counter extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    count:0,
+                    timerRef:null,
+                }
+            }
+            createTimer(){
+                const timer =  setInterval(()=>{this.setState((prevState)=>{
+                        return{
+                            count:prevState.count+1,
+                        }
+                    })},1000);
+                _timerGlobal = timer;
+                return timer;    
+            }
+            onIncHandler(){
+                this.setState({
+                    timerRef : this.createTimer(),
+                });
+            }
+            // componentWillUnmount(){
+            //     console.log("componentWillUnmount",this.state.timerRef);
+            //     clearInterval(this.state.timerRef);
+            // }
+            render(){
+                return(
+                    <div>
+                        <h1>{this.state.count}</h1>
+                        <button onClick={this.onIncHandler.bind(this)}>inc</button>
+                    </div>
+                );
+            }
+
+        }
+
+        class DemoContainer extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    conditionalFlag:false,
+                };
+            }
+            onClickHandler(){
+                const flag = this.state.conditionalFlag;
+                this.setState({
+                    conditionalFlag:!flag,
+                });
+            }
+            render(){
+                return(
+                    <div>
+                        <button onClick={this.onClickHandler.bind(this)}>{this.state.conditionalFlag?"Hide":"Show"}</button>
+                        {this.state.conditionalFlag ? <Counter/> : <React.Fragment></React.Fragment>}
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<DemoContainer/>,document.getElementById("root"));
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyfe cycle methods</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<!-- Understand ComponentDidMount and log/api/datasave logic placement -->
+<!-- https://legacy.reactjs.org/docs/react-component.html#componentdidupdate -->
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    
+    class DisplayText extends React.Component{
+        componentDidUpdate(prevProps) {
+            //rece condition
+            if (this.props.displayDate !== prevProps.displayDate) {
+                //update component logic
+            }
+        };
+        render(){
+            const {displayDate} = this.props;
+            return <h1>{displayDate}</h1>
+        }
+    }
+
+    class PersistInput extends React.Component{
+        constructor(props){
+            super();
+            this.state = {
+                inputValue:"",
+                showInputData:false,
+            };
+        }
+        onChangeHandler(event){
+            this.setState({
+                inputValue:event.target.value,
+            });
+        }
+
+        render(){
+            return (
+                <div>
+                    <input
+                    placeholder="Enter here" 
+                    onChange={this.onChangeHandler.bind(this)}
+                    onBlur={()=>{this.setState({showInputData:true})}}
+                    onFocus={()=>{this.setState({showInputData:false})}}
+                    />
+                    {this.state.showInputData ? <DisplayText displayDate={"this.state.inputValue"}/> : <React.Fragment></React.Fragment>}
+                    <DisplayText displayDate={this.state.inputValue}/>
+                </div>
+            );
+        }
+    }  
+      
+    ReactDOM.render(<PersistInput />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class MultiPage extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    page:0,
+                };
+            }
+
+            onClickHandler(e){
+                   this.setState({
+                    page:e,
+                   })
+            }
+
+            display(){
+                if(this.state.page===1){
+                    console.log("page1")
+                }else if(this.state.page===2){
+                    console.log("page2")
+                }
+            }
+
+            render(){
+                
+                return (
+                        <React.Fragment>
+                          
+                        </React.Fragment>
+                       
+                )
+            }
+        }
+
+        class App extends React.Component{
+            render(){
+                let pages = [
+                    {
+                        pageName:"Home",
+                        component:<h1>My HomePage</h1>
+                    },
+                    {
+                        pageName:"About",
+                        component:<h1>My AboutPage</h1>
+                    },
+                    {
+                        pageName:"Contact",
+                        component:<h1>My ContactPage</h1>
+                    },
+                    {
+                        pageName:"TestiMony",
+                        component:<h1>My Testimony</h1>
+                    },
+                    {
+                        pageName:"Yewowowo",
+                        component:<h1>My yewoyewo</h1>
+                    },                   
+                ]
+
+                return (
+                    <React.Fragment>
+                        <MultiPage/>
+                    </React.Fragment>
+                )
+            }
+        }
+        ReactDOM.render(<App/>, document.getElementById("root"))
+
+    </script>
+    
+</body>
+</html>

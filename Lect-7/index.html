@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <script type="text/babel">
+
+        class MultiPage extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    page:0,
+                };
+            }
+
+            onClicksHandler(index){
+                this.setState({
+                    page:index
+                })
+            }
+
+            getViewByPageNumber(page){
+                
+                return this.props.page[this.state.page].component;
+            }
+            render(){
+                const{page} = this.props;
+                return (
+                    <React.Fragment>
+                        {page.map((item,index)=> {
+                            return (<button key={index} onClick ={()=>this.onClicksHandler.call(this,index)}>{item.pageName}</button>)
+                        })};
+                        {this.getViewByPageNumber()}
+                    </React.Fragment>
+                );
+
+            }
+        }
+
+        class App extends React.Component{
+            render(){
+                let page = [
+                    {
+                        pageName:"Home",
+                        component:<h1>My HomePage</h1>
+                    },
+                    {
+                        pageName:"About",
+                        component:<h1>My AboutPage</h1>
+                    },
+                    {
+                        pageName:"Contact",
+                        component:<h1>My ContactPage</h1>
+                    },
+                    {
+                        pageName:"TestiMony",
+                        component:<h1>My Testimony</h1>
+                    },
+                    {
+                        pageName:"Yewowowo",
+                        component:<h1>My yewoyewo</h1>
+                    },
+                   
+                ]  
+                return(
+                    <React.Fragment>
+                        <MultiPage page={page}/>
+                     </React.Fragment>
+                );
+            }
+        }
+        ReactDOM.render(<App/>, document.getElementById("root"))
+    </script>
+    
+</body>
+</html>

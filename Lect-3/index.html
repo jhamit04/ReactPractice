@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js" ></script>
+  
+</head>
+<!-- props drilling -->
+<body>
+    <div id="root">
+
+    </div>
+    <script type="text/babel">
+        class TextDisplayer extends React.Component{
+            render(){
+                const{disText,bisText,kissText} = this.props;
+                return (<React.Fragment>
+                        <h1>{disText+bisText}</h1>
+                        <TextDisplayerChild kissText={kissText} />
+                       </React.Fragment>
+                       
+                )
+            }
+        }
+
+        class TextDisplayerChild extends React.Component{
+            render(){
+                const{kissText} = this.props;
+                return <h3>{kissText}</h3>
+
+            }
+        }
+
+        class App extends React.Component{
+            render(){
+                return (
+                    <React.Fragment>
+                        <TextDisplayer disText="amit" bisText = "jha" kissText="muahh"/>
+                    </React.Fragment>
+                )
+            }
+        }
+        
+        ReactDOM.render(<App/>, document.getElementById("root"))
+    </script>
+    
+</body>
+</html>

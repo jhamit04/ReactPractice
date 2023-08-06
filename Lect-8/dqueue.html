@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lect-8</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Dequeue extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    array:[],
+                    value:"",
+                    length:false,
+                };
+            }
+            onChangeHandler(event){ 
+                this.setState({
+                    value:event.target.value,
+                });
+            }
+            pushStartHandler(){
+                this.setState({
+                    array:[this.state.value, ...this.state.array],
+                    value:"",
+                });
+            }
+            pushEndHandler(){
+                this.setState({
+                    array:[...this.state.array, this.state.value],
+                    value:"",
+                });
+            }
+            popStartHAndler(){
+                let temp = this.state.array;  
+                temp.shift()
+                this.setState({
+                    array:temp,
+                });
+            }
+            popEndHandler(){
+                let temp = this.state.array;
+                temp.pop()
+                this.setState({
+                    array:temp,
+                });
+            }
+            getLength(){ 
+                this.setState({
+                    length:!this.state.length,
+                });
+            }
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <input onChange={this.onChangeHandler.bind(this)}type="text" value={this.state.value}/>
+                        <button onClick={this.pushStartHandler.bind(this)}>pushStart</button>
+                        <button onClick={this.pushEndHandler.bind(this)}>pushEnd</button>
+                        <button onClick={this.popStartHAndler.bind(this)}>popStart</button>
+                        <button onClick={this.popEndHandler.bind(this)}>popEnd</button>
+                        <button onClick={this.getLength.bind(this)}>getLength</button>
+                        <h3>{this.state.array.join("|")}</h3>
+                        {this.state.length?<h3>{this.state.array.length}</h3>:<div></div>}
+                    </React.Fragment>
+                )
+            }
+            
+        }
+        class App extends React.Component {
+            render() {
+                return (
+                    <React.Fragment>
+                        <Dequeue/>
+                    </React.Fragment>
+                )
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"))
+    </script>
+
+</body>
+
+</html>

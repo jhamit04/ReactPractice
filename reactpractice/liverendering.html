@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class Dummy extends React.Component{
+            render(){
+                //props and Children
+                
+                return this.props.canDisplay ? <h1>{this.props.children}</h1>: <h1>No perm</h1>
+            }
+        }
+
+        class TypeWriter extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    input : "",
+                    temp:""
+                };
+            }
+            inputHandler(event){
+                this.setState({
+                  temp:event.target.value,
+                });
+            }
+
+            render(){
+                return(
+                 <div>
+                    <input type="text" onChange = {this.inputHandler.bind(this)}/>
+                    <Dummy canDisplay={true}>{this.state.input}</Dummy>
+                    <Dummy canDisplay>{this.state.input.split("").reverse().join()}</Dummy>
+                    <button onClick={()=>{this.setState({input:this.state.temp})}}>update</button>
+                </div>
+                )
+
+            }
+        }
+        ReactDOM.render(<TypeWriter/>, document.getElementById("root"))
+
+    </script>
+</body>
+</html>
