@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+    border: 5px solid skyblue;
+    border-radius: 10px;
+    position: fixed; /* Sit on top of the page content */
+    width: 50%; /* Full width (cover the whole page) */
+    height: 50%;
+    left:15%;
+    top:1rem; /* Full height (cover the whole page) */
+    background-color: rgba(0,0,0,0.8); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.timer_input {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.form_btn {
+    padding: 10px 20px;
+    background-color:skyblue;
+    color: rgba(14, 3, 3, 0.906);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form_btn:hover {
+    background-color: #0056b3;
+}
+.error-msg{
+    color: red;
+}

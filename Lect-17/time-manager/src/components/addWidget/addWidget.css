@@ -1,0 +1,13 @@
+button.btn {
+    font-size: 4rem;
+    /* text-align: center; */
+    display: flex;
+    border: 2px solid skyblue;
+    width: 50%;
+    margin: auto;
+    cursor: pointer;
+    justify-content: space-around;
+}
+button.btn:hover{
+ background-color: orange;
+}

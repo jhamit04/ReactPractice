@@ -13,25 +13,19 @@
 <!-- state is a concept  -->
 <!-- creation and management of states -->
 <body>
-    <div id="root">
-
-
-    </div>
+    <div id="root"></div>
     <script type="text/babel">
         class App extends React.Component{
-
             constructor(props){
                 super(props);
                 this.state = {
-                    count:0
-                
+                    count:0      
                 };
             }
             onclickhand(){
                 this.setState({
                     count:this.state.count+1
-                })
-               
+                })   
             }
 
             render(){

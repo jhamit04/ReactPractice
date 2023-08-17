@@ -1,0 +1,35 @@
+
+.job-details-container {
+    max-width: 600px;
+  
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+  }
+  
+  .job-details-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .job-details-container h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  
+  .job-details-container p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  /* Style for the fallback message */
+  .fallback-message {
+    color: red;
+    font-size: 18px;
+  }
+  
+  /* Add more styles as needed */
+  

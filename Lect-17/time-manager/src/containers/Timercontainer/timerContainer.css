@@ -1,0 +1,52 @@
+.timer_container {
+  position: relative;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer_container h1 {
+  font-size: 3rem;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.edit,
+.delete {
+  font-size: 2rem;
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.edit:hover{
+  color: green;
+}
+.delete:hover {
+  color: #d11219;
+}
+
+.edit {
+  left: 10px;
+}
+
+.delete {
+  right: 10px;
+}
+
+/* Style for react-icons */
+.edit svg,
+.delete svg {
+  width: 1.2em;
+  height: 1.2em;
+}

@@ -9,9 +9,8 @@
     <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 </head>
 <body>
-    <div id="root">
+    <div id="root"></div>
 
-    </div>
     <script type="text/babel">
 
         class MultiPage extends React.Component{
@@ -21,7 +20,6 @@
                     page:0,
                 };
             }
-
             onClicksHandler(index){
                 this.setState({
                     page:index
