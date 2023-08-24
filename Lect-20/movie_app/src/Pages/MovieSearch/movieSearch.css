@@ -1,0 +1,105 @@
+
+.movie-search-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+.input-search {
+    font-size: 1.5rem;
+    width: 40vw;
+    height: 2em;
+    border: 1px dotted skyblue;
+    border-radius: 10px;
+    padding-left: 1em;
+    margin-top: 1em;
+}
+
+.search-container {
+    display: flex;
+}
+
+@keyframes rotate360 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Apply the animation on click */
+  .search-icon {
+    font-size: 3rem;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    transition: transform 0.3s ease; /* Add a smooth transition */
+  }
+  
+  .search-icon:hover {
+    transform: scale(1.5); /* Enlarge by 10% on hover */
+  }
+  
+
+
+.image-style{
+    border-radius: 10px;
+    margin-top: 1em;
+    margin-left: 20%;
+}
+
+/* For broader screens, display two movies side by side */
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    margin-top: 1em;
+  }
+  
+  .movie-item {
+    flex-basis: calc(50% - 10px);
+    margin: 5px;
+    background-color: lightgrey;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  .movie-item:hover {
+    transform: scale(1.02); /* Enlarge by 10% */
+    background-color: darkgray;
+  }
+  .ml{
+    margin-left: 0.3em;
+  }
+  
+  /* For narrower screens, display one movie per row */
+  @media (max-width: 768px) {
+    .movie-item {
+      flex-basis: calc(100% - 10px);
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    .search-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .input-search {
+        width: 90vw;
+    }
+    .search-icon{
+        margin: auto;
+        margin-top: 1em;
+    }
+    .movie-container{
+        width:90vw;
+    }
+    .box {
+        flex-basis: calc(100% - 10px); /* Set full width for one box (minus spacing) */
+      }
+      .image-style{
+        margin-left: 10%;
+    }
+}
